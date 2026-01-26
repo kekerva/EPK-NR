@@ -9,83 +9,77 @@ html, body {
 }
 
 body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-               Roboto, Helvetica, Arial, sans-serif;
   background: #fff;
   color: #000;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont,
+               "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
-/* PAGE */
-.page {
-  min-height: 100%;
-}
-
-/* HERO WITH PHOTO + GRADIENT */
+/* HERO */
 .hero {
-  min-height: 100vh;
   position: relative;
+  height: 100vh;
+  width: 100%;
 
-  /* фото + мягкий градиент в белый снизу */
+  /* фото ВПИСЫВАЕТСЯ, НЕ ОБРЕЗАЕТСЯ */
   background-image:
     linear-gradient(
       to bottom,
-      rgba(255, 255, 255, 0) 55%,
-      rgba(255, 255, 255, 0.6) 72%,
-      rgba(255, 255, 255, 1) 90%
+      rgba(255,255,255,0) 72%,
+      rgba(255,255,255,0.85) 84%,
+      rgba(255,255,255,1) 100%
     ),
     url("assets/hero.jpg");
 
-  background-size: cover;
-  background-position: center bottom;
   background-repeat: no-repeat;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background-position: center bottom;
+  background-size: contain;
 }
 
-/* CENTER CONTENT */
+/* CONTENT — ВНИЗУ */
 .content {
+  position: absolute;
+  bottom: 48px;
+  left: 0;
+  right: 0;
+
   text-align: center;
-  padding: 24px;
-  max-width: 560px;
+  padding: 0 24px;
 }
 
 /* TITLE */
-.title {
-  margin: 0 0 16px;
+h1 {
+  margin: 0 0 14px;
   font-size: clamp(28px, 6vw, 44px);
   font-weight: 800;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
 }
 
 /* LINKS */
-.links {
+nav {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 10px 16px;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
-.links a {
-  font-size: 14px;
+nav a {
   color: #000;
   text-decoration: none;
+  font-size: 14px;
   border-bottom: 1px solid rgba(0,0,0,0.25);
-  padding-bottom: 2px;
 }
 
-.links a:hover {
-  border-bottom-color: rgba(0,0,0,0.9);
+nav a:hover {
+  border-bottom-color: rgba(0,0,0,0.8);
 }
 
 /* BUTTONS */
 .buttons {
   display: flex;
-  gap: 12px;
   justify-content: center;
+  gap: 12px;
   flex-wrap: wrap;
 }
 
@@ -99,10 +93,6 @@ body {
   border: 1px solid #000;
 }
 
-.btn:hover {
-  opacity: 0.9;
-}
-
 .btn.ghost {
   background: transparent;
   color: #000;
@@ -112,5 +102,9 @@ body {
 @media (max-width: 420px) {
   .btn {
     width: 100%;
+  }
+
+  .content {
+    bottom: 32px;
   }
 }
