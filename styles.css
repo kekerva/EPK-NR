@@ -2,8 +2,13 @@
 * { box-sizing: border-box; }
 html, body { margin: 0; height: 100%; }
 
+/* THEME */
+:root {
+  --panel-bg: #f2f2f2; /* мягкий светло-серый */
+}
+
 body {
-  background: #fff;
+  background: var(--panel-bg);
   color: #000;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
                Roboto, Helvetica, Arial, sans-serif;
@@ -20,7 +25,7 @@ body {
 .hero {
   position: relative;
   overflow: hidden;
-  background: #fff;
+  background: var(--panel-bg);
   min-height: 0; /* important for grid */
 }
 
@@ -38,26 +43,30 @@ body {
   display: block;
   object-fit: contain;       /* preserves full image on desktop */
   object-position: center;
-  background: #fff;
+  background: var(--panel-bg);
 }
 
 /* subtle fade at very bottom edge */
 .hero-fade {
   position: absolute;
-  left: 0; right: 0; bottom: 0;
-  height: 14vh;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  height: 14vh; /* DESKTOP */
   pointer-events: none;
+
   background: linear-gradient(
     to bottom,
-    rgba(255,255,255,0) 0%,
-    rgba(255,255,255,0.8) 55%,
-    rgba(255,255,255,1) 100%
+    rgba(242,242,242,0) 0%,
+    rgba(242,242,242,0.85) 55%,
+    var(--panel-bg) 100%
   );
 }
 
 /* PANEL */
 .panel {
-  background: #fff;
+  background: var(--panel-bg);
   text-align: center;
   padding: 18px 24px calc(32px + env(safe-area-inset-bottom));
 }
@@ -138,14 +147,15 @@ body {
 
   .hero-img {
     width: 100vw;
-    height: 88vh;              /* БОЛЬШЕ (было 78vh) */
-    object-fit: cover;         /* без пустот по бокам */
+    height: 88vh;              /* bigger mobile hero */
+    object-fit: cover;         /* no side gaps */
     object-position: center 20%;
     display: block;
+    background: var(--panel-bg);
   }
 
   .hero-fade {
-    height: 6vh;               /* В 2 РАЗА УЖЕ (было 12vh) */
+    height: 6vh;               /* narrower gradient on mobile */
   }
 
   .panel {
@@ -156,7 +166,6 @@ body {
     width: 100%;
   }
 }
-
 
 /* OPTIONAL: subtle page fade-in */
 @media (prefers-reduced-motion: no-preference) {
