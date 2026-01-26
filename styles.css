@@ -1,59 +1,63 @@
 /* RESET */
 * { box-sizing: border-box; }
-html, body { margin: 0; height: 100%; }
+html, body { height: 100%; margin: 0; }
 
 body {
   background: #fff;
   color: #000;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont,
-               "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+               Roboto, Helvetica, Arial, sans-serif;
 }
 
-/* HERO — full bleed, no white bars */
+/* LAYOUT: image area + bottom panel */
+.wrap {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: 1fr auto; /* фото занимает всё остальное, панель снизу */
+}
+
+/* HERO IMAGE AREA */
 .hero {
   position: relative;
-  min-height: 100vh;
-  width: 100%;
-
-  background-image: url("assets/hero.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;                 /* убирает белые полосы */
-  background-position: center 78%;        /* ключевая цифра под 3000×2000 */
+  min-height: 0; /* важно для grid, чтобы img не ломала высоту */
+  overflow: hidden;
+  background: #fff;
 }
 
-/* very narrow fade only at the bottom edge */
-.fade {
+/* ключ: показываем максимум кадра без "cover" */
+.hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;          /* НИЧЕГО НЕ РЕЖЕТ */
+  object-position: center;      /* можно поменять на: center top */
+  display: block;
+  background: #fff;             /* если будут поля — они белые, “как студия” */
+}
+
+/* fade на стыке, но НЕ поверх лица: только внизу */
+.hero-fade {
   position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-
-  height: 12vh;                           /* уже и ниже */
+  left: 0; right: 0; bottom: 0;
+  height: 14vh;
   pointer-events: none;
-
   background: linear-gradient(
     to bottom,
     rgba(255,255,255,0) 0%,
-    rgba(255,255,255,0.9) 65%,
+    rgba(255,255,255,0.75) 55%,
     rgba(255,255,255,1) 100%
   );
 }
 
-/* TEXT BLOCK — BELOW THE IMAGE */
+/* BOTTOM PANEL */
 .panel {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-
-  padding: 16px 24px 36px;
-  text-align: center;
   background: #fff;
+  text-align: center;
+  padding: 18px 24px 38px;
 }
 
 /* TITLE */
 .title {
-  margin: 0 0 10px;
+  margin: 0 0 12px;
   font-size: clamp(26px, 5.5vw, 40px);
   font-weight: 800;
   letter-spacing: 0.08em;
@@ -106,13 +110,7 @@ body {
 
 .btn:hover { opacity: 0.92; }
 
-/* MOBILE */
 @media (max-width: 420px) {
-  .panel {
-    padding-bottom: 28px;
-  }
-
-  .btn {
-    width: 100%;
-  }
+  .panel { padding-bottom: 28px; }
+  .btn { width: 100%; }
 }
