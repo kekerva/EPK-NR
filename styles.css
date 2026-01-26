@@ -9,11 +9,11 @@ body {
                Roboto, Helvetica, Arial, sans-serif;
 }
 
-/* DESKTOP/TABLET: image area + panel */
+/* DESKTOP/TABLET LAYOUT */
 .wrap {
   min-height: 100vh;
   display: grid;
-  grid-template-rows: 1fr auto;
+  grid-template-rows: 1fr auto; /* image area + panel */
 }
 
 /* HERO */
@@ -24,16 +24,24 @@ body {
   min-height: 0; /* important for grid */
 }
 
+/* picture should behave like a block that fills hero */
+.hero picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* DESKTOP IMAGE (hero.jpg): keep the “no-crop editorial” look */
 .hero-img {
   width: 100%;
   height: 100%;
-  object-fit: contain;       /* no cropping */
-  object-position: center;   /* stable framing */
   display: block;
+  object-fit: contain;       /* preserves full image on desktop */
+  object-position: center;
   background: #fff;
 }
 
-/* subtle fade at the very bottom edge */
+/* subtle fade at very bottom edge */
 .hero-fade {
   position: absolute;
   left: 0; right: 0; bottom: 0;
@@ -109,26 +117,27 @@ body {
 
 .btn:hover { opacity: 0.92; }
 
-/* ✅ MOBILE FIX: remove grid, use normal flow */
+/* ✅ MOBILE: use the new vertical crop + cover for a “full” hero */
 @media (max-width: 520px) {
   .wrap {
-    display: block;          /* no grid on mobile */
+    display: block; /* simpler flow = iOS stable */
     min-height: 100vh;
   }
 
-  .hero {
+  .hero picture {
     height: auto;
   }
 
   .hero-img {
     width: 100%;
-    height: auto;            /* key for iOS stability */
-    max-height: 62vh;        /* keeps panel visible */
-    object-fit: contain;
+    height: 78vh;           /* hero height on mobile */
+    object-fit: cover;      /* now safe because hero-mobile is cropped for it */
+    object-position: center top;
+    background: #fff;
   }
 
   .hero-fade {
-    height: 10vh;
+    height: 12vh;           /* slightly narrower on mobile */
   }
 
   .panel {
@@ -140,7 +149,7 @@ body {
   }
 }
 
-/* ---------- PAGE FADE-IN (optional, subtle) ---------- */
+/* OPTIONAL: subtle page fade-in */
 @media (prefers-reduced-motion: no-preference) {
   body {
     opacity: 0;
