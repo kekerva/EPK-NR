@@ -14,7 +14,11 @@
 <body>
   <main class="wrap">
     <section class="hero" aria-label="Hero">
-      <img class="hero-img" src="assets/hero.jpg" alt="Nastia Reigel" />
+      <picture>
+        <source srcset="assets/hero-mobile.jpg" media="(max-width: 520px)" />
+        <img class="hero-img" src="assets/hero.jpg" alt="Nastia Reigel" />
+      </picture>
+
       <div class="hero-fade" aria-hidden="true"></div>
     </section>
 
