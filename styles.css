@@ -47,7 +47,7 @@ body {
 .hero-fade {
   position: absolute;
   left: 0; right: 0; bottom: 0;
-  height: 14vh;
+  height: 14vh; /* DESKTOP */
   pointer-events: none;
   background: linear-gradient(
     to bottom,
@@ -117,8 +117,8 @@ body {
 
 .btn:hover { opacity: 0.92; }
 
-/* SPACING (same before spotify and before video) */
-.section-gap { height: 56px; }
+/* SPACING (bigger: x1.5) */
+.section-gap { height: 84px; }
 
 /* MEDIA WIDTHS */
 .media {
@@ -222,15 +222,22 @@ body {
     object-position: center 20%;
   }
 
-  .hero-fade { height: 6vh; }
+  /* gradient starts higher on mobile */
+  .hero-fade { height: 10vh; }
 
+  /* bring panel up so title is visible immediately */
   .panel {
-    padding: 18px 18px calc(30px + env(safe-area-inset-bottom));
+    padding: 8px 18px calc(30px + env(safe-area-inset-bottom));
+  }
+
+  .title {
+    margin-top: -18px; /* lifts the title into the fade zone */
   }
 
   .btn { width: 100%; }
 
-  .section-gap { height: 28px; } /* same spacing on mobile too */
+  /* spacing: bigger (x1.5-ish, but not too пустынно on mobile) */
+  .section-gap { height: 72px; }
 
   .info { margin-top: 12px; }
 }
