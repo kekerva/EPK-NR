@@ -118,7 +118,7 @@ body {
 .btn:hover { opacity: 0.92; }
 
 /* SPACING (same before spotify and before video) */
-.section-gap { height: 48px; }
+.section-gap { height: 56px; }
 
 /* MEDIA WIDTHS */
 .media {
