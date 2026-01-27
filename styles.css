@@ -2,9 +2,10 @@
 * { box-sizing: border-box; }
 html, body { margin: 0; height: 100%; }
 
-/* THEME */
+/* THEME + TUNING */
 :root {
   --panel-bg: #f2f2f2;
+  --panel-lift: 56px; /* <-- ДВИГАЙ ЭТО (выше/ниже панель относительно фото) */
 }
 
 body {
@@ -44,11 +45,11 @@ body {
   background: var(--panel-bg);
 }
 
-/* Gradient under the title (compact) */
+/* Compact fade right above the panel edge */
 .hero-fade {
   position: absolute;
   left: 0; right: 0; bottom: 0;
-  height: 8vh; /* desktop */
+  height: 10vh;
   pointer-events: none;
   background: linear-gradient(
     to bottom,
@@ -58,31 +59,28 @@ body {
   );
 }
 
-/* TITLE (always on top of hero) */
-.title {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 18px;
-
-  margin: 0;
-  padding: 0 24px;
-
+/* PANEL (overlaps hero) */
+.panel {
+  background: var(--panel-bg);
   text-align: center;
+
+  /* This is the "panel sits on the edge of the photo" effect */
+  margin-top: calc(var(--panel-lift) * -1);
+
+  padding: 22px 24px calc(34px + env(safe-area-inset-bottom));
+
+  /* optional: subtle "card" feeling */
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
+}
+
+/* TITLE (inside panel) */
+.title {
+  margin: 0 0 12px;
   font-size: clamp(26px, 5.5vw, 40px);
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-
-  z-index: 5;
-  pointer-events: none;
-}
-
-/* PANEL */
-.panel {
-  background: var(--panel-bg);
-  text-align: center;
-  padding: 28px 24px calc(34px + env(safe-area-inset-bottom));
 }
 
 /* LINKS */
@@ -213,6 +211,9 @@ body {
 
 /* MOBILE */
 @media (max-width: 520px) {
+  /* A bit stronger overlap on mobile so title is visible immediately */
+  :root { --panel-lift: 72px; }
+
   .wrap {
     display: block;
     min-height: 100vh;
@@ -234,23 +235,14 @@ body {
     object-position: center 20%;
   }
 
-  /* gradient starts higher on mobile */
-  .hero-fade { height: 10vh; }
+  .hero-fade { height: 12vh; }
 
-  /* title position tuned for mobile */
-  .title {
-    bottom: 14px;
-    padding: 0 18px;
-  }
-
-  /* panel normal (no поднятия вверх) */
   .panel {
-    padding: 28px 18px calc(30px + env(safe-area-inset-bottom));
+    padding: 18px 18px calc(30px + env(safe-area-inset-bottom));
   }
 
   .btn { width: 100%; }
 
-  /* spacing a bit smaller than desktop, but still big */
   .section-gap { height: 72px; }
 
   .info { margin-top: 12px; }
