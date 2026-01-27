@@ -229,8 +229,17 @@ body {
     object-position: center 20%;
   }
 
-  /* make fade reach the title area */
-  .hero-fade { height: 18vh; }
+  /* mobile hero fade — lower & softer */
+  .hero-fade {
+    height: 12vh; /* ниже и плавнее */
+    background: linear-gradient(
+      to bottom,
+      rgba(242,242,242,0) 0%,
+      rgba(242,242,242,0.35) 45%,
+      rgba(242,242,242,0.7) 75%,
+      var(--panel-bg) 100%
+    );
+  }
 
   /* make title visible without scrolling */
   .panel {
