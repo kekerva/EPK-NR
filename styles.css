@@ -324,5 +324,9 @@ body {
 }
 
 @media (max-width: 420px) {
-  .release-grid { grid-template-columns: 1fr; }
+  .release-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
 }
+
